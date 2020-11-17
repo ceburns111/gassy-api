@@ -10,10 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/session", routes.session);
-app.use("/users", routes.user);
-app.use("/messages", routes.message);
-
 app.use(async (req, res, next) => {
   req.context = {
     models,
@@ -21,6 +17,10 @@ app.use(async (req, res, next) => {
   };
   next();
 });
+
+app.use("/session", routes.session);
+app.use("/users", routes.user);
+app.use("/messages", routes.message);
 
 const eraseDatabaseOnSync = true;
 
